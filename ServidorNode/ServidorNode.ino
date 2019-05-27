@@ -1,14 +1,18 @@
-#include <ESP8266WiFi.h> 
-char ssid[] = "Jicaral Sercoba";  //Nombre de la SSID 
-char pass[] = "trixie425_panda";  //Contraseña
+#include <ESP8266WiFi.h>
+
+char ssid[] = "Samsung";  //Nombre de la SSID 
+char pass[] = "simonjfv";  //Contraseña
 String data;  //String que almacena los char recibidos por el cliente concatenados
 int data2;
+
 //Se crea el servidor TCP con su respectivo puerto
 WiFiServer server(7070);
 
 void setup(){
   Serial.begin(9600);
+
   analogWriteFreq(120); //Cambia la frecuencia de PWM
+
   //Pines para controlar los motores
   pinMode(0, OUTPUT); //Direccion: adelante/atras In-1
   pinMode(4, OUTPUT); //In-2
@@ -21,6 +25,14 @@ void setup(){
   //Pines para el registro de corrimiento
   pinMode(12, OUTPUT);
   pinMode(15, OUTPUT); 
+
+  //IP estatica
+  IPAddress ip(192,168,43,200);     
+  IPAddress gateway(192,168,43,1);   
+  IPAddress subnet(255,255,255,0);
+  //Modo de conexion
+  WiFi.mode(WIFI_STA);
+  WiFi.config(ip, gateway, subnet);
   
   //Se intenta conectar al WiFi y espera hasta que ocurra
   Serial.printf("Conectandose a %s ", ssid);
@@ -32,6 +44,7 @@ void setup(){
   Serial.println("Conectado!");
   Serial.print("IP: ");
   Serial.println(WiFi.localIP());
+
   //Inicializa el servidor
   server.begin();
 }
@@ -92,6 +105,7 @@ void loop() {
       data = "";
       delay(10);
     }
+
     //Cierra la conexion cuando el cliente se desconecta
     client.stop();
     Serial.println("[Cliente desconectado]");
