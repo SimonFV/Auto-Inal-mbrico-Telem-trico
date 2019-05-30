@@ -117,11 +117,12 @@ void loop() {
           digitalWrite(5, LOW);   //Gira izquierda levemente
           digitalWrite(16, HIGH);
           analogWrite(14, 1023);
-          delay(200);
+          delay(250);
           digitalWrite(16, LOW);
           digitalWrite(5, HIGH);   //Gira derecha
+          delay(200);
           analogWrite(2, 1023);   //Acelera
-          delay(8000);
+          delay(6000);
           analogWrite(2, 0);   //Se detiene
           analogWrite(14, 0);
         }else if(data2==365){  //CIRCULO IZQUIERDA
@@ -136,8 +137,9 @@ void loop() {
           delay(250);
           digitalWrite(5, LOW);   //Gira izquierda
           digitalWrite(16, HIGH);
+          delay(200);
           analogWrite(2, 1023);   //Acelera
-          delay(8000);
+          delay(6000);
           analogWrite(2, 0);   //Se detiene
           analogWrite(14, 0);
         }else if(data2==370){  //CIRCULO INFINITO u OCHO
@@ -152,14 +154,15 @@ void loop() {
           delay(250);
           digitalWrite(16, LOW);
           digitalWrite(5, HIGH);   //Gira derecha medio circulo
+          delay(200);
           analogWrite(2, 1023);  //Acelera
-          delay(4000);
+          delay(3000);
           digitalWrite(5, LOW);   //Gira izquierda un circulo
           digitalWrite(16, HIGH);
-          delay(8000);
+          delay(6000);
           digitalWrite(16, LOW);
           digitalWrite(5, HIGH);   //Gira derecha medio circulo
-          delay(4000);
+          delay(3500);
           analogWrite(2, 0);   //Se detiene
           analogWrite(14, 0);
       }else if(data2==380){  //ZIG ZAG
@@ -174,17 +177,18 @@ void loop() {
           delay(250);
           digitalWrite(5, LOW);   //Gira izquierda semi-circulo
           digitalWrite(16, HIGH);
+          delay(200);
           analogWrite(2, 1023);  //Acelera
           delay(1000);
           digitalWrite(16, LOW);
           digitalWrite(5, HIGH);   //Gira derecha medio circulo
-          delay(2000);
+          delay(1800);
           digitalWrite(5, LOW);   //Gira izquierda medio circulo
           digitalWrite(16, HIGH);
-          delay(2000);
+          delay(1800);
           digitalWrite(16, LOW);
           digitalWrite(5, HIGH);   //Gira derecha medio circulo
-          delay(2000);
+          delay(1800);
           digitalWrite(5, LOW);   //Gira izquierda semi-circulo
           digitalWrite(16, HIGH);
           delay(1000);
@@ -202,8 +206,9 @@ void loop() {
           delay(250);
           digitalWrite(5, LOW);   //Gira izquierda
           digitalWrite(16, HIGH);
+          delay(200);
           analogWrite(2, 1023);  //Acelera en reversa
-          delay(2000);
+          delay(2500);
           analogWrite(2, 0);   //Se detiene
           analogWrite(14, 0);
           delay(1000);
@@ -230,8 +235,9 @@ void loop() {
           delay(250);
           digitalWrite(5, LOW);   //Gira izquierda
           digitalWrite(16, HIGH);
+          delay(200);
           analogWrite(2, 1023);  //Acelera
-          delay(2000);
+          delay(2500);
           analogWrite(2, 0);
           analogWrite(14, 0);
       }
