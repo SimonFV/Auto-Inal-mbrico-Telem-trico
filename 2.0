@@ -1,0 +1,241 @@
+docu = """INSTITUTO TECNOLÓGICO DE COSTA RICA.
+CURSO DE TALLER DE PROGRAMACIÓN
+TERCER PROYECTO PROGRAMADO: FÓRMULA E CE
+PROFESOR: Msc. PEDRO GUITIERREZ
+ESTUDIANTES: MARCO PICADO 2018310184
+SIMÓN 
+BRANDON MUÑOZ CAMPOS 2018087204
+PRIMER SEMESTRE 2019
+FECHA DE ENTREGA 18 DE JUNIO DE 2019
+FECHA DE EMISIÓN: 03 DE JUNIO DE 2019
+FECHA DE ÚLTIMA MODIFICACIÓN: 
+VERSIÓN 0.1.4"""
+
+####################################Bibliotecas necesarias####################
+from tkinter import *
+from tkinter import ttk
+import os
+import time
+import socket
+global contadorE
+global contadorQ
+contadorE = 0
+contadorQ = 0
+
+"""
+def movs(selec):
+    byte =  [1, 1, 1, 1, 1, 1, 0, 0]
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(("192.168.100.6", 7070)
+    while True:  
+        if(selec == 1):
+            valor = 1023 ##No se cual potencia es para adelante
+            s.send(valor.encode("utf-8"))           
+        elif(selec == 2):
+            valor  = -1
+            s.send(valor.encode("utf-8"))
+        elif(selec ==  3):
+            valor = 422  ##No se cual potencia es para atras
+            s.send(valor.encode("utf-8"))
+        elif(selec == 4):
+            valor = 1
+            s.send(valor.encode("utf-8"))
+        else:
+            break  
+"""       
+
+###########cargando la imagen, TOMADA DE TURORIA TK#############################
+
+def cargarImg(nombre):
+    """recibe una imagen que carga desde la ruta especificada
+       entradas: Nombre de la imagen que se quiera cargar
+       salidas: imagen que se cargó
+       restricciones: solo recibe un nombre dado desde otra función.
+       """
+       
+    ruta=os.path.join('imag',nombre)
+    imagen=PhotoImage(file=ruta)
+    return imagen
+
+def empezar_partida():
+    print("hola")
+
+def ventana_about():
+    """Función que crea la ventana de about
+    entradas: no tiene argumentos pero recibe la orden desde el botón de pantalla principal
+    salidas: ventana de about
+    restricciones: solo ejecuta la ventana about
+    """
+    ### Muestra la ventana de about y sus configuraciones
+    about=Toplevel()
+    about.title('Acerca de este software:')
+    about.minsize(800,600)
+    about.resizable(width=NO, height=NO)
+    
+    ### Widget que muestra la informacion del proyecto (version, fecha, integrantes etc...)
+    canvas_about=Canvas(about, width=800,height=600,bg='light green')
+    canvas_about.place(x=0,y=0)
+    text_about=Label(about,text=docu,font=('Agency FB',20))
+    text_about.place(x=115,y=30)
+
+    ### Foto ventana about
+    #foto=cargarImg('mi_foto.gif')
+    #F_about=Label(about, image=foto,bg='light blue')
+    #F_about.photo=foto
+    #F_about.place(x=550,y=0)
+    
+    ### Boton para ir a la ventana de inicio
+    btn_atras=Button(about, text="ATRAS", command=about.destroy,fg='green',bg='white', relief = "flat")
+    btn_atras.place(x=20,y=560)
+
+def test_drive():
+
+    ##Funciones de los eventos de las keys
+    def funcW(event):
+        print("W")
+        aumenta()
+        #return movs(1)
+    def funcA(event):
+        print("A")
+        #return movs(2)
+
+    def funcS(event):
+        print("S")
+        #disminuye()
+        #return movs(3)
+
+    def funcD(event):
+        print("D")
+        #return movs(4)
+
+    #Muestra la ventana de test drive y sus configuraciones
+    test_drive = Toplevel()
+    test_drive.minsize(800, 600)
+    test_drive.title("Test Drive!")
+    test_drive.resizable(width=NO, height=NO)
+    test_drive.configure(bg="Black")
+
+    #Background Image de la test drive
+    #bg_image =  PhotoImage(file = r"C:\Users\brand\Documents\Taller e intro\Project3\image.png")
+    #bg_label = Label(test_drive, image = bg_image)
+    #bg_label.place(x=0, y=0, relheight = 1, relwidth = 1)
+    
+    #### Botones de WASD de la ventana test drive:
+    btn_arriba = Button(test_drive, text="W", bg="#2e3131", fg= "White", relief ="flat", width = 6, height = 3)
+    test_drive.bind("<w>", funcW)
+    btn_arriba.place(x=100, y=427)
+    btn_izquierda = Button(test_drive, text="A", bg="#2e3131", fg= "White", relief ="flat", width = 6, height = 3)
+    test_drive.bind("<a>", funcA)
+    btn_izquierda.place(x=45, y=485)
+    btn_abajo = Button(test_drive, text="S", bg="#2e3131", fg= "White", relief ="flat", width = 6, height = 3)
+    test_drive.bind("<s>", funcS)
+    btn_abajo.place(x=100, y=485)
+    btn_derecha = Button(test_drive, text="D", bg="#2e3131", fg= "White", relief ="flat", width = 6, height = 3)
+    test_drive.bind("<d>", funcD)
+    btn_derecha.place(x=155, y=485)
+
+    ### Nombre, nacionalidad del piloto y label de la bateria y boton de cerrar:
+    user_name = "Nombre" ### Se puede obtener de un get entry
+    name_label=Label(test_drive, text = user_name, bg="#2e3131", fg="White",width = 15, height = 2,anchor="e")
+    name_label.place(x=670,y=20)
+    nacionalidad =  "Nacionalidad" ### Se puede obtener de un get entry
+    name_label=Label(test_drive, text = nacionalidad, bg="#2e3131", fg="White",width = 15, height = 2, anchor="e")
+    name_label.place(x=670,y=60)
+    bat_lbl=Label(test_drive, text= "100%", bg="#2e3131", fg="White",width = 11, height = 2,anchor="c", font = 18)
+    bat_lbl.place(x=675,y=218)
+    btn_cierra=Button(test_drive, text='X', command=test_drive.destroy,bg='#d91e18',fg='white',relief ="flat")  ### funcion para consultar y almacenar el nivel de batería del carro                                                                                                       
+    btn_cierra.place(x=0,y=0)
+
+    ### Velocimetro:
+    def aumenta():
+        vel.start()
+        vel['maximum'] = 100
+        for i in range(101):
+            time.sleep(0.02)
+            vel['value'] = i
+            vel.update()
+        vel['value'] = 0
+        
+    veltext = Label(test_drive, text = "Velocidad:", bg="#2e3131", fg = "white", relief = "flat", width = 20)
+    veltext.place(x = 601 ,y = 485)
+    vel = ttk.Progressbar(test_drive, orient = "horizontal", length = "150", mode = "determinate")
+    vel.place(x = 600 ,y = 515)
+
+    ### funciones de encendido apagado de las luces direccionales (se puede enviar datos a arudino desde aca
+    ### para controlarlas) ^^
+
+    def funcQ(event):
+        global contadorQ
+        contadorQ = contadorQ +1
+        if(contadorQ % 2 != 0):
+            stateQ.set("ON")
+        else:
+            stateQ.set("OFF")
+
+    def funcE(event):
+        global contadorE
+        contadorE = contadorE +1
+        if(contadorE % 2 != 0):
+            stateE.set("ON")
+        else:
+            stateE.set("OFF")
+
+    ## Text variables para las luces
+
+    stateE = StringVar()
+    stateE.set("OFF")
+    stateQ = StringVar()
+    stateQ.set("OFF")
+
+    ###Luces:
+
+    btn_freno = Label(test_drive, text = "Fren", bg="#d91e18", relief ="flat", width = 6, height = 3)
+    btn_freno.place(x=675, y = 105)
+    btn_delanteras = Label(test_drive, text = "Fron", bg= "#e8ecf1", relief ="flat", width = 6, height = 3)
+    btn_delanteras.place(x=730, y = 105)
+    lbl_lucIzq = Label(test_drive, textvariable = stateQ, bg="#f5e51b", relief ="flat", width = 6, height = 3)
+    lbl_lucIzq.place(x=675, y = 160)
+    test_drive.bind("<q>", funcQ)
+    lbl_lucDer = Label(test_drive, textvariable = stateE, bg= "#f5e51b", relief ="flat", width = 6, height = 3)
+    lbl_lucDer.place(x=730, y = 160)
+    test_drive.bind("<e>", funcE)
+    
+### Muestra la ventana root y sus configuraciones
+
+root = Tk() 
+root.title("Tercer proyecto MArco, Simón y Brandon. 2019")
+root.minsize(800, 600)
+root.resizable(width=NO, height=NO)
+
+canvas_root=Canvas(root, width = 800, height = 600, bg= "white")
+
+### Imagen de pantalla principal
+
+#carg=cargarImg("formula e.gif")   #extraida de: https://www.kienyke.com/deportes/mas-deportes/disenos-carros-de-formula-1-en-el-mundial-de-rusia
+imag_prin=Label(root, bg='white')
+imag_prin.place(x=0,y=0)
+#imag_prin.config(image=carg)
+
+
+### Botones de la ventana principal:
+
+boton_testDrive =  Button(root, text="TEST DRIVE", command = test_drive, fg = "white", bg = "#2e3131", relief ="flat")
+boton_testDrive.place( x= 620, y= 60)
+boton_juego = Button(root, text='INICIO', command=empezar_partida,fg='white',bg='#2e3131',relief ="flat")
+boton_juego.place(x=370,y=520)
+boton_about= Button(root,text='ABOUT:',command=ventana_about,bg='#2e3131',fg='white',relief ="flat")
+boton_about.place(x=620,y=520)
+boton_cerrar=Button(root, text='CERRAR', command=root.destroy,bg='#2e3131',fg='white',relief ="flat")
+boton_cerrar.place(x=100,y=520)
+
+
+### Entry de ventana principal:
+
+#etiqueta_nombre= Label(ventana,text="Ingresa tu nombre:",font=('helvetica',14),fg='light yellow', bg="grey")
+#etiqueta_nombre.place(x=560,y=49)
+#caja_nombre= Entry(ventana,width=20,font=('helvetica',14))
+#caja_nombre.place(x=560,y=75)
+L_titulo=Label(root, text="CLASSIC \n FORMULA \n UNO", font=("Agency FB",30), bg="grey",fg="light yellow")
+L_titulo.place(x=10,y=10)
+
+root.mainloop()
