@@ -10,3 +10,6 @@ Baterias van desconectadas.
 Verificar que el interruptor este en on antes de hacer las pruebas.
 Ruta del git:
 https://github.com/SimonFV/Auto-Telemetrico
+
+
+##asd
